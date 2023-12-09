@@ -8,6 +8,7 @@ class CustomContainer extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final Color color;
   final Function()? onTap;
+  final BoxBorder? boxBorder;
   CustomContainer({
     super.key,
     required this.borderRadius,
@@ -16,6 +17,7 @@ class CustomContainer extends StatelessWidget {
     required this.child,
     required this.width,
     required this.onTap,
+    this.boxBorder,
     this.margin,
   });
 
@@ -29,6 +31,7 @@ class CustomContainer extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
+          border: boxBorder,
           color: color,
         ),
         child: Center(

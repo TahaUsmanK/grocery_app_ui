@@ -29,14 +29,16 @@ class GroceryItemTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           child: Stack(
             children: [
-              Center(
+              Padding(
+                padding: EdgeInsets.only(left: 25, right: 26, top: 24),
                 child: Image.asset(
                   imagePath,
-                  height: 80,
+                  height: 97.99999,
+                  width: 112.00001,
                 ),
               ),
               Positioned(
-                bottom: 20,
+                bottom: 24,
                 left: 8,
                 right: 0,
                 child: Column(

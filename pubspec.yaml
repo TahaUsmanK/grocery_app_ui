@@ -38,6 +38,9 @@ dependencies:
   provider: ^6.1.1
   google_fonts: ^6.1.0
   device_preview: ^1.1.0
+  flutter_screenutil: ^5.9.0
+  intl_phone_number_input:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

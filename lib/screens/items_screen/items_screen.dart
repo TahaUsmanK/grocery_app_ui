@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_app_ui/components/grocery_item_tile.dart';
 import 'package:grocery_app_ui/models/cart_model.dart';
 import 'package:grocery_app_ui/screens/home_screen/home_screen.dart';
@@ -55,13 +56,18 @@ class ItemScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              'Vegetable',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Vegetables',
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Image.asset('lib/assets/images/corn.png'),
+                              ],
                             ),
                           ),
                           Padding(

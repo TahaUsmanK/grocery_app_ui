@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_app_ui/components/custom_container.dart';
 import 'package:grocery_app_ui/models/cart_model.dart';
+import 'package:grocery_app_ui/screens/home_screen/home_screen.dart';
+import 'package:grocery_app_ui/screens/track_order_screen/track_order_screen.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
@@ -9,65 +12,138 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: Colors.grey[800],
-        ),
-      ),
       body: Consumer<CartModel>(
         builder: (context, value, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
-                child: Text(
-                  "My Cart",
-                  style: GoogleFonts.notoSerif(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Container(
+                margin: EdgeInsets.only(top: 30, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        child: Center(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 18,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: Colors.grey.shade50,
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 0.3,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Cart ',
+                              style: GoogleFonts.dmSans(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Image.asset('lib/assets/images/basket.png'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 40,
+                    ),
+                  ],
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(0),
                   child: ListView.builder(
                     itemCount: value.cartItems.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.grey.shade50,
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey.shade500,
+                                width: 0.3,
+                              ),
+                            ),
                           ),
                           child: ListTile(
                             leading: Image.asset(
                               value.cartItems[index]['imagePath'] ?? '',
-                              height: 36,
+                              height: 42,
                             ),
                             title: Text(
                               value.cartItems[index]['name'] ?? '',
-                              style: const TextStyle(fontSize: 18),
+                              style: GoogleFonts.dmSans(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             subtitle: Row(
                               children: [
                                 Text(
-                                  '\$${value.cartItems[index]['price'] ?? "0.00"}',
-                                  style: const TextStyle(fontSize: 12),
+                                  '1kg, \$${value.cartItems[index]['price'] ?? "0.00"}',
+                                  style: GoogleFonts.dmSans(
+                                    color: Colors.red,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
-                                const SizedBox(width: 8),
-                                _buildQuantityControl(context, index),
                               ],
                             ),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.cancel),
-                              onPressed: () =>
-                                  Provider.of<CartModel>(context, listen: false)
-                                      .removeItemFromCart(index),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.remove_circle),
+                                  color: Colors.green,
+                                  iconSize: 38,
+                                  onPressed: () {
+                                    value.decrementQuantity(index);
+                                  },
+                                ),
+                                Text(
+                                  value.cartItems[index]['quantity'] ?? '0',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.add_circle),
+                                  color: Colors.green,
+                                  iconSize: 38,
+                                  onPressed: () {
+                                    value.incrementQuantity(index);
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -77,43 +153,33 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(36.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 29),
+                child: Center(
+                  child: CustomContainer(
+                    borderRadius: BorderRadius.circular(30),
                     color: Colors.green,
+                    height: 53,
+                    child: Text(
+                      'Checkout',
+                      style: GoogleFonts.dmSans(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                    ),
+                    width: double.infinity,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TrackOrderScreen()));
+                    },
                   ),
                 ),
-              ),
+              )
             ],
           );
         },
       ),
-    );
-  }
-
-  Widget _buildQuantityControl(BuildContext context, int index) {
-    final cartModel = Provider.of<CartModel>(context, listen: false);
-
-    return Row(
-      children: [
-        IconButton(
-          icon: const Icon(Icons.remove),
-          onPressed: () {
-            cartModel.decrementQuantity(index);
-          },
-        ),
-        Text(
-          '${cartModel.cartItems[index]['quantity']}',
-          style: const TextStyle(fontSize: 12),
-        ),
-        IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () {
-            cartModel.incrementQuantity(index);
-          },
-        ),
-      ],
     );
   }
 }
