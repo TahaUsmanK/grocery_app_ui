@@ -77,14 +77,12 @@ class TrackOrderScreen extends StatelessWidget {
                       ),
                       child: Align(
                         alignment: Alignment.topCenter,
-                        child: Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Divider(
-                              color: Colors.grey.shade400,
-                              thickness: 3,
-                              height: 4.43267,
-                            ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Divider(
+                            color: Colors.grey.shade400,
+                            thickness: 3,
+                            height: 4.43267,
                           ),
                         ),
                       ),
@@ -347,10 +345,7 @@ class TrackOrderScreen extends StatelessWidget {
                         right: 24,
                         top: 24,
                       ),
-                      child: Expanded(
-                        child:
-                            Divider(color: Colors.grey.shade500, thickness: 1),
-                      ),
+                      child: Divider(color: Colors.grey.shade500, thickness: 1),
                     ),
                     //
                     Padding(
