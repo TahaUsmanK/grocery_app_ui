@@ -159,7 +159,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 26),
-                    Padding(
+                    Container(
+                      height: 55,
                       padding: EdgeInsets.only(left: 24, right: 24),
                       child: CustomContainer(
                         borderRadius: BorderRadius.circular(30),
@@ -228,15 +229,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         bottom: 16,
                         right: 14,
                       ),
-                      child: Expanded(
-                        child: CustomContainer(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey.shade200,
-                          height: 280,
-                          child: Numpad(),
-                          width: double.infinity,
-                          onTap: () {},
-                        ),
+                      child: CustomContainer(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.grey.shade200,
+                        height: 280,
+                        child: Numpad(),
+                        width: double.infinity,
+                        onTap: () {},
                       ),
                     ),
                   ],

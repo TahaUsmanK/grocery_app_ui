@@ -253,41 +253,39 @@ class _HomeScreenState extends State<HomeScreen> {
                 right: 10,
                 left: 10,
               ),
-              child: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.grey.shade300,
+                    child: Image.asset('lib/assets/images/apple.png'),
+                    radius: 35,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ItemScreen()));
+                    },
+                    child: CircleAvatar(
                       backgroundColor: Colors.grey.shade300,
-                      child: Image.asset('lib/assets/images/apple.png'),
+                      child: Image.asset('lib/assets/images/broccoli.png'),
                       radius: 35,
                     ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ItemScreen()));
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey.shade300,
-                        child: Image.asset('lib/assets/images/broccoli.png'),
-                        radius: 35,
-                      ),
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.grey.shade300,
-                      child: Image.asset('lib/assets/images/cheese.png'),
-                      radius: 35,
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.grey.shade300,
-                      child: Image.asset('lib/assets/images/meat.png'),
-                      radius: 35,
-                    ),
-                  ],
-                ),
+                  ),
+                  CircleAvatar(
+                    backgroundColor: Colors.grey.shade300,
+                    child: Image.asset('lib/assets/images/cheese.png'),
+                    radius: 35,
+                  ),
+                  CircleAvatar(
+                    backgroundColor: Colors.grey.shade300,
+                    child: Image.asset('lib/assets/images/meat.png'),
+                    radius: 35,
+                  ),
+                ],
               ),
             ),
             SizedBox(
